@@ -8,7 +8,13 @@
 
 using namespace std;
 
-static void XMLParser(std::string &&filename, std::string &&level, int &PHealth, int &GTime, int &GInitSpeed) {
+struct stat //Formato de extraccion de estadisticas
+{
+	string player;
+	int score;
+};
+
+static void XMLParser(std::string &&filename) {
 	rapidxml::file<> xmlFile(filename); //carreguem filename a un a variable file de XML
 	rapidxml::xml_document<> doc; //creem un espai de memoria per a un document xml
 	try {

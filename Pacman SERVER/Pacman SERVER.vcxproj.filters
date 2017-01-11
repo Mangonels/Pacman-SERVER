@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="XML_IO.cpp">
+    <ClCompile Include="IOManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
