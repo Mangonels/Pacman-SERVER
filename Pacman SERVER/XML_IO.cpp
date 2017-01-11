@@ -1,14 +1,15 @@
 #pragma once
+#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <iterator>
-#include <rapidxml.hpp>
+#include "xml/rapidxml.hpp"
 #include <string>
 
 using namespace std;
 
 static void XMLParser(std::string &&filename, std::string &&level, int &PHealth, int &GTime, int &GInitSpeed) {
-	rapidxml::file<> xmlFile(RESOURCE_FILE(filename)); //carreguem filename a un a variable file de XML
+	rapidxml::file<> xmlFile(filename); //carreguem filename a un a variable file de XML
 	rapidxml::xml_document<> doc; //creem un espai de memoria per a un document xml
 	try {
 		doc.parse<0>(xmlFile.data()); //parsejem doc i hi asignem el contingut (data()) de xmlFile
