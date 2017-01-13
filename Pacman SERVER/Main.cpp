@@ -2,6 +2,6 @@
 
 int main(void) {
 
-	XMLCreateOrSetPlayer("hola.xml", 5);
+	CreateOrSetPlayerXML("Dylan", 5, "rektinpieces");
 
 }

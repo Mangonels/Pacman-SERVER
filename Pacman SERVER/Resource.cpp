@@ -3,4 +3,4 @@
 
 // Define path to store our resources
 #define RESOURCE_PATH "PlayerData/"
-#define RESOURCE_FILE(filename) (RESOURCE_PATH + (filename)).c_str()
+#define RESOURCE_FILE(name) (RESOURCE_PATH + (name) + ".xml").c_str()
