@@ -11,7 +11,7 @@
 #include "xml/rapidxml_print.hpp"
 #include "xml/rapidxml_utils.hpp"
 
-#include "Resource.cpp"
+#include "Resource.cc"
 
 using namespace std;
 using namespace rapidxml;
