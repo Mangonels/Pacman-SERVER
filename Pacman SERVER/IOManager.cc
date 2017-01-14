@@ -96,12 +96,51 @@ namespace IOManager {
 
 	}
 
-	static void GetPlayerData() 
+	static Player GetPlayerData(Player player)
 	{
-		
+		try {
+			rapidxml::file<> xmlFile(RESOURCE_FILE(player.name));
+		}
+		catch (exception e) {
+			return player;
+		}
+		rapidxml::file<> xmlFile(RESOURCE_FILE(player.name)); //carreguem filename a un a variable file de XML
+		rapidxml::xml_document<> doc; //creem un espai de memoria per a un document xml
+		try {
+			doc.parse<0>(xmlFile.data()); //parsejem doc i hi asignem el contingut (data()) de xmlFile
+		}
+		catch (rapidxml::parse_error err) {
+			std::cout << err.what() << std::endl /*<< err.where() << std::endl*/;
+			system("pause");
+		}
+
+		rapidxml::xml_node<> *root_node = doc.first_node(player.name.c_str()); //root node contindrá el primer node, que será <levels>
+
+		rapidxml::xml_node<> *nameAttr = root_node->first_node("Name");
+		player.name = nameAttr->value();
+
+		rapidxml::xml_node<> *scoreAttr = root_node->first_node("Score"); //mateixa operacio
+		player.score = std::stoi(scoreAttr->value());
+
+		rapidxml::xml_node<> *a1Attr = root_node->first_node("Achievement1"); //same
+		player.a1 = std::stoi(a1Attr->value());
+
+		rapidxml::xml_node<> *a2Attr = root_node->first_node("Achievement2"); //same
+		player.a2 = std::stoi(a2Attr->value());
+
+		rapidxml::xml_node<> *a3Attr = root_node->first_node("Achievement3"); //same
+		player.a3 = std::stoi(a3Attr->value());
+
+		rapidxml::xml_node<> *a4Attr = root_node->first_node("Achievement4"); //same
+		player.a4 = std::stoi(a4Attr->value());
+
+		rapidxml::xml_node<> *a5Attr = root_node->first_node("Achievement5"); //same
+		player.a5 = std::stoi(a5Attr->value());
+
+		return player;
 	}
 
-	static void SetRanking() 
+	static void SetRanking()
 	{
 		//Quiza crear el archivo antes...
 
@@ -110,9 +149,9 @@ namespace IOManager {
 		xmlDoc.parse<parse_no_data_nodes>(xmlFile.data());
 	}
 
-	static void GetRanking() 
+	static void GetRanking()
 	{
-		
+
 	}
 
 }
