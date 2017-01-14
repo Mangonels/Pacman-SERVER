@@ -166,17 +166,18 @@ namespace IOManager {
 		for (list<Player>::const_iterator iterator = ranking.begin(), end = ranking.end(); iterator != end; ++iterator) {
 
 			string theName = "player" + to_string(i);
-
-			xml_node<>* player = xmlDoc.allocate_node(node_element, theName.c_str()); //Generates child score node.
-			player->value(iterator->name.c_str()); //Sets the value inside this node to the previously parsed to string, int score.
-			root->append_node(player);
+			string theScore = to_string(iterator->score);
+			
+			xml_node<> *player = xmlDoc.allocate_node(node_element, "Player"); //Generates a node for the playername.
+			player->name("Player"); //Sets the name of the node, same as the inserted player name.
+			xmlDoc.append_node(player); //Joins the node to inside of the document.
 
 			xml_node<>* name = xmlDoc.allocate_node(node_element, "Name"); //Generates child score node.
 			name->value(iterator->name.c_str()); //Sets the value inside this node to the previously parsed to string, int score.
 			player->append_node(name);
-
+			
 			xml_node<>* score = xmlDoc.allocate_node(node_element, "Score"); //Generates child score node.
-			score->value(iterator->name.c_str()); //Sets the value inside this node to the previously parsed to string, int score.
+			score->value(theScore.c_str()); //Sets the value inside this node to the previously parsed to string, int score.
 			player->append_node(score);
 			i++;
 		}
