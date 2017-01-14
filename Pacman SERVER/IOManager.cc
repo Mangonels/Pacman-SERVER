@@ -5,7 +5,7 @@
 #include <iterator>
 #include <string>
 #include <vector>
-
+#include <list>
 #include "xml/rapidxml.hpp"
 #include "xml/rapidxml_iterators.hpp"
 #include "xml/rapidxml_print.hpp"
@@ -140,13 +140,50 @@ namespace IOManager {
 		return player;
 	}
 
-	static void SetRanking()
+	static void SetRanking(list<Player> ranking)
 	{
-		//Quiza crear el archivo antes...
+		string names = "Ranking";
 
-		file<> xmlFile("Ranking.xml");
+		ofstream playerdata;
+		playerdata.open(RESOURCE_FILE(names));
+		playerdata.close();
+
+		file<> xmlFile(RESOURCE_FILE(names)); //loads file to an XML file variable
 		xml_document<> xmlDoc;
 		xmlDoc.parse<parse_no_data_nodes>(xmlFile.data());
+
+		xml_node<> *declaration = xmlDoc.allocate_node(node_declaration); //Generates a node, which is allocated inside the xmlDoc. node_declaration is the enum node kind.
+		declaration->append_attribute(xmlDoc.allocate_attribute("version", "1.0")); //Creates an attribute for the previously generated node.
+		declaration->append_attribute(xmlDoc.allocate_attribute("encoding", "utf-8")); //Creates a second attribute.
+		xmlDoc.append_node(declaration); //This actually sets the previously generated node as first child node inside the file. According to documentation.
+
+		xml_node<> *root = xmlDoc.allocate_node(node_element, "Ranking"); //Generates a node for the playername.
+		root->name("Ranking"); //Sets the name of the node, same as the inserted player name.
+		xmlDoc.append_node(root); //Joins the node to inside of the document.
+
+		
+		int i = 1;
+		for (list<Player>::const_iterator iterator = ranking.begin(), end = ranking.end(); iterator != end; ++iterator) {
+
+			string theName = "player" + to_string(i);
+
+			xml_node<>* player = xmlDoc.allocate_node(node_element, theName.c_str()); //Generates child score node.
+			player->value(iterator->name.c_str()); //Sets the value inside this node to the previously parsed to string, int score.
+			root->append_node(player);
+
+			xml_node<>* name = xmlDoc.allocate_node(node_element, "Name"); //Generates child score node.
+			name->value(iterator->name.c_str()); //Sets the value inside this node to the previously parsed to string, int score.
+			player->append_node(name);
+
+			xml_node<>* score = xmlDoc.allocate_node(node_element, "Score"); //Generates child score node.
+			score->value(iterator->name.c_str()); //Sets the value inside this node to the previously parsed to string, int score.
+			player->append_node(score);
+			i++;
+		}
+		playerdata.open(RESOURCE_FILE(names));
+		playerdata << xmlDoc;
+		playerdata.close();
+		xmlDoc.clear();
 	}
 
 	static void GetRanking()

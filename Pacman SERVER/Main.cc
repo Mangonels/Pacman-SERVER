@@ -10,8 +10,8 @@ int main(void) {
 	user.a3 = false;
 	user.a4 = true;
 	user.a5 = false;
-	std::cout << user.name << " " << user.score << " " << user.a2 << "\n";
-	user = IOManager::GetPlayerData(user);
-	std::cout << user.name << " " << user.score << " " << user.a2 << "\n";
+	list<Player> aa;
+	aa.resize(10);
+	IOManager::SetRanking(aa);
 	system("pause");
 }
