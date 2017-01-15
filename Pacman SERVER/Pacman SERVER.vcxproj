@@ -142,12 +142,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="IOManager.cc" />
     <ClCompile Include="Main.cc" />
     <ClCompile Include="Resource.cc" />
     <ClCompile Include="SERVER connect.cc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="IOManager.hh" />
     <ClInclude Include="SERVER connect.hh" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
