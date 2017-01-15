@@ -75,24 +75,24 @@ namespace IOManager {
 		root->append_node(childAchievement1); // ""
 
 		//CHILD NODE ACHIEVEMENT 2
-		xml_node<>* childAchievement2 = xmlDoc.allocate_node(node_element, "Achievement2"); //Generates child achievements node.
-		childAchievement2->value(theA2.c_str()); //Same as with previous child node.
-		root->append_node(childAchievement2); // ""
+		xml_node<>* childAchievement2 = xmlDoc.allocate_node(node_element, "Achievement2");
+		childAchievement2->value(theA2.c_str());
+		root->append_node(childAchievement2);
 		
 		//CHILD NODE ACHIEVEMENT 3
-		xml_node<>* childAchievement3 = xmlDoc.allocate_node(node_element, "Achievement3"); //Generates child achievements node.
-		childAchievement3->value(theA3.c_str()); //Same as with previous child node.
-		root->append_node(childAchievement3); // ""
+		xml_node<>* childAchievement3 = xmlDoc.allocate_node(node_element, "Achievement3");
+		childAchievement3->value(theA3.c_str());
+		root->append_node(childAchievement3);
 		
 		//CHILD NODE ACHIEVEMENT 4
-		xml_node<>* childAchievement4 = xmlDoc.allocate_node(node_element, "Achievement4"); //Generates child achievements node.
-		childAchievement4->value(theA4.c_str()); //Same as with previous child node.
-		root->append_node(childAchievement4); // ""
+		xml_node<>* childAchievement4 = xmlDoc.allocate_node(node_element, "Achievement4");
+		childAchievement4->value(theA4.c_str());
+		root->append_node(childAchievement4);
 		
 		//CHILD NODE ACHIEVEMENT 5
-		xml_node<>* childAchievement5 = xmlDoc.allocate_node(node_element, "Achievement5"); //Generates child achievements node.
-		childAchievement5->value(theA5.c_str()); //Same as with previous child node.
-		root->append_node(childAchievement5); // ""
+		xml_node<>* childAchievement5 = xmlDoc.allocate_node(node_element, "Achievement5");
+		childAchievement5->value(theA5.c_str());
+		root->append_node(childAchievement5);
 
 		//WRITING THE VIRTUAL XML DOCUMENT ONTO THE FILE, again THROUGH FileIO:
 		playerdata.open(RESOURCE_FILE(player.name));
@@ -147,6 +147,7 @@ namespace IOManager {
 
 		return player;
 	}
+
 
 	static void SetRanking(list<Player> ranking)
 	{

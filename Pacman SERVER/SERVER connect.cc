@@ -29,9 +29,9 @@ void connect()
 	//socket Arguments: AF_INET = internet domain (not Unix domain),
 	//SOCK_STREAM = connection orientated TCP (not SOCK_DGRAM)
 	sock_CONNECTION = socket(AF_INET, SOCK_STREAM, NULL);
-	ADDRESS.sin_addr.s_addr = inet_addr("127.0.0.1"); //Set IP
+	ADDRESS.sin_addr.s_addr = inet_addr("127.0.0.1"); //IP
 	ADDRESS.sin_family = AF_INET;
-	ADDRESS.sin_port = htons(444); //port
+	ADDRESS.sin_port = htons(444); //PORT
 
 	sock_LISTEN = socket(AF_INET, SOCK_STREAM, NULL);
 	bind(sock_LISTEN, (SOCKADDR*)&ADDRESS, sizeof(ADDRESS));
@@ -46,7 +46,7 @@ void connect()
 		{
 			cout << "\n\tA connection was found!" << endl;
 
-			SUCCESSFUL = send(sock_CONNECTION, "Server connection established!", 46, NULL); //<-- ASI ES COMO SE ENVIA UN MENSAJE!!
+			SUCCESSFUL = send(sock_CONNECTION, "Server connection established!", 46, NULL); //<-- MESSAGE SENT HERE!!
 		}
 	}
 }
