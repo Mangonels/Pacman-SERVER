@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SERVER connect.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Resource.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -30,6 +27,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IOManager.hh">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="server.hh">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

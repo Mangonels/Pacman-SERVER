@@ -6,8 +6,6 @@
 #include <string>
 #include <vector>
 #include <list>
-#include "xml/rapidxml.hpp"
-#include "xml/rapidxml_iterators.hpp"
 #include "xml/rapidxml_print.hpp"
 #include "xml/rapidxml_utils.hpp"
 
@@ -18,22 +16,14 @@ using namespace rapidxml;
 
 struct Player {
 	string name = "Test";
-	int score = 1000;
+	int score = 0;
 	bool a1 = false;
 	bool a2 = false;
 	bool a3 = false;
 	bool a4 = false;
 	bool a5 = false;
 };
-struct Playera {
-	char name[10] = "Test";
-	int score = 1000;
-	bool a1 = false;
-	bool a2 = false;
-	bool a3 = false;
-	bool a4 = false;
-	bool a5 = false;
-};
+
 
 namespace IOManager {
 
@@ -385,8 +375,9 @@ namespace IOManager {
 		return ranking;
 	}
 
-	static list<Player> InsertResultInOrder(list<Player> results, Player playerResult) { //<-Insert the new player result here
+	static void InsertResultInOrder(Player playerResult) { //<-Insert the new player result here
 
+		list<Player> results = IOManager::GetRanking();
 		if (results.empty()) results.emplace_front(playerResult); //If there's nothing, we set the results directly on first place.
 		else {
 			for (list<Player>::const_iterator iterator = results.begin(), end = results.end(); iterator != end; ++iterator) { //"results" list iterator
@@ -397,6 +388,6 @@ namespace IOManager {
 				}
 			}
 		}
-		return results;
+		IOManager::SetRanking(results);
 	}
 }
